@@ -14,7 +14,7 @@ let numeroEntero = parseInt(prompt("Ingrese un numero entero: "));
 
 for (let index = 0; index <= numeroEntero; index++) {
     for (let index1 = 0; index1 < index; index1++) {
-        document.write("H");
+        document.write("*");
 
     }
     document.write("<br>")
