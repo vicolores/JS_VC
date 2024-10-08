@@ -35,10 +35,16 @@ function porcentaje(a, b) {
 }
 
 // Solicitar operación al usuario
-let operacion = parseInt(prompt("Introduce la operación a realizar:\n1: sumar\n2: restar\n3: dividir\n4: multiplicar\n5: cociente\n6: porcentaje"));
+let operacion = parseInt(
+  prompt(
+    "Introduce la operación a realizar:\n1: sumar\n2: restar\n3: dividir\n4: multiplicar\n5: cociente\n6: porcentaje"
+  )
+);
 
 // Confirmar la operación
-let confirmacion = confirm("Has seleccionado la operación: " + operacion + ". ¿Es correcto?");
+let confirmacion = confirm(
+  "Has seleccionado la operación: " + operacion + ". ¿Es correcto?"
+);
 if (!confirmacion) {
   alert("Operación cancelada.");
 } else {
