@@ -17,4 +17,4 @@ while (true) {
 
 }
 
-document.write("Todos los mensajes escritos: <br>" + datosUsuario.join("<br>"));<br>"));
+document.write("Todos los mensajes escritos: <br>" + datosUsuario.join("<br>"));
