@@ -9,17 +9,20 @@ debe ser divisible por 4 y no debe ser divisible por 100, excepto que también s
 */
 
 function esBisiesto(anio) {
-    if ((anio % 4 === 0 && anio % 100 !== 0) || (anio % 400 === 0)) {
-        return true;
-    } else {
-        return false;
-    }
+  // Un año es bisiesto si es divisible por 4 y no por 100, o si es divisible por 400
+  if ((anio % 4 === 0 && anio % 100 !== 0) || anio % 400 === 0) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-let anio = parseInt(prompt("Ingrese un año:"));
+// Solicita al usuario que ingrese un año
+let anio = parseInt(prompt("Ingrese un año:"), 10);
 
+// Verifica si el año es bisiesto y muestra el resultado
 if (esBisiesto(anio)) {
-    console.write(`El año ${anio} es bisiesto.`);
+  console.log(`El año ${anio} es bisiesto.`); // Visualizar desde consola de depuración
 } else {
-    console.write(`El año ${anio} no es bisiesto.`);
+  console.log(`El año ${anio} no es bisiesto.`);
 }
