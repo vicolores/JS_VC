@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Ejercicio 13 - DOM básico</title>
+
+  <script type="text/javascript">
+    // Función que añade un nuevo elemento a la lista
+    function anade() {
+      // Crear un nuevo elemento de lista (li)
+      var nuevoElemento = document.createElement("li");
+
+      // Crear el texto para el nuevo elemento
+      var textoElemento = document.createTextNode("Nuevo elemento añadido");
+
+      // Añadir el texto al nuevo elemento li
+      nuevoElemento.appendChild(textoElemento);
+
+      // Añadir el nuevo elemento li a la lista (ul)
+      var lista = document.getElementById("lista");
+      lista.appendChild(nuevoElemento);
+    }
+  </script>
+</head>
+
+<body>
+  <ul id="lista">
+    <li>Lorem ipsum dolor sit amet</li>
+    <li>Consectetuer adipiscing elit</li>
+    <li>Sed mattis enim vitae orci</li>
+    <li>Phasellus libero</li>
+    <li>Maecenas nisl arcu</li>
+  </ul>
+  <input type="button" value="Añadir elemento" onclick="anade();">
+</body>
+
+</html>
