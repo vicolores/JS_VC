@@ -5,7 +5,7 @@ palíndromo complejo: "La ruta nos aporto otro paso natural"
 */
 function esPalindromo(cadena) {
   // Convertir todo a minúsculas y eliminar espacios
-  // La expresión /[^a-z0-9]/g es una expresión regular que define el patrón que queremos buscar.
+  // La expresión /[^a-z0-9]/g es una expresión regular que define el patrón que queremos buscar. 
   // / y /: Estos delimitadores indican el inicio y el final de la expresión regular.
   // En este caso, estamos buscando cualquier carácter que no sea una letra minúscula o un dígito.
   // El signo ^ indica que estamos buscando caracteres que no estén en el conjunto de caracteres especificado.(niega el conjunto de caracteres)

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Información del Documento</title>
+  <script>
+    // Función para redirigir a Google
+      function irAGoogle() {
+        window.open('https://www.google.com', '_blank');
+      }
+
+
+    // Función para mostrar la información de la URL actual
+    function mostrarInformacion() {
+      // Obtener la URL actual
+      const urlActual = window.location.href;
+
+      // Obtener el pathname (cadena después del nombre del servidor)
+      const pathname = window.location.pathname;
+
+      // Obtener el protocolo utilizado (http o https)
+      const protocolo = window.location.protocol;
+
+      // Mostrar la información en el documento
+      document.getElementById("url").textContent = `URL Actual: ${urlActual}`;
+      document.getElementById("pathname").textContent = `Pathname: ${pathname}`;
+      document.getElementById("protocolo").textContent = `Protocolo: ${protocolo}`;
+    }
+
+    // Ejecutar la función al cargar la página
+    window.onload = mostrarInformacion;
+  </script>
+</head>
+
+<body>
+  <h1>Información del Documento</h1>
+  <p id="url"></p>
+  <p id="pathname"></p>
+  <p id="protocolo"></p>
+
+  <!-- Botón para redirigir a Google -->
+  <button onclick="irAGoogle()">Ir a Google</button>
+</body>
+
+</html>

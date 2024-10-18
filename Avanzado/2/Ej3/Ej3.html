@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hora Actual</title>
+  <script>
+    // Función para mostrar la hora actual con un saludo personalizado
+    function mostrarHoraActual() {
+      const fecha = new Date();
+      const horas = fecha.getHours();
+      const minutos = fecha.getMinutes().toString().padStart(2, '0'); // Asegura que siempre sean 2 dígitos
+
+      // Definir el saludo dependiendo de la hora
+      let saludo;
+      if (horas < 14) {
+        saludo = "Buenos días";
+      } else if (horas < 20) {
+        saludo = "Buenas tardes";
+      } else {
+        saludo = "Buenas noches";
+      }
+
+      // Formatear la hora
+      const horaFormateada = `${horas}:${minutos}`;
+
+      // Crear el mensaje completo
+      const mensaje = `${saludo}, son las ${horaFormateada} horas`;
+
+      // Mostrar el mensaje en el elemento con id 'mensaje'
+      document.getElementById("mensaje").textContent = mensaje;
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Hora Actual</h1>
+  <button onclick="mostrarHoraActual()">Mostrar Hora Actual</button>
+  <p id="mensaje"></p>
+</body>
+
+</html>
