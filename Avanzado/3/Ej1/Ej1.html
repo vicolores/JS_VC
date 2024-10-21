@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulación de Ventana</title>
+</head>
+
+<body>
+    <button onclick="abrirVentana()">Abrir Ventana</button>
+
+    <script>
+        function abrirVentana() {
+            // Abre una nueva ventana con unas dimensiones iniciales.
+            const nuevaVentana = window.open('', '', 'width=400,height=300');
+
+            if (nuevaVentana) {
+                // Redimensionar después de 2 segundos (duplicar tamaño).
+                setTimeout(() => {
+                    nuevaVentana.resizeTo(800, 600);
+                }, 2000);
+
+                // Mover la ventana al centro de la pantalla después de 5 segundos.
+                setTimeout(() => {
+                    const screenWidth = window.screen.width;
+                    const screenHeight = window.screen.height;
+                    const newLeft = (screenWidth - 800) / 2;
+                    const newTop = (screenHeight - 600) / 2;
+
+                    nuevaVentana.moveTo(newLeft, newTop);
+                }, 5000);
+
+                // Cerrar la ventana después de 10 segundos.
+                setTimeout(() => {
+                    nuevaVentana.close();
+                }, 10000);
+            } else {
+                alert('Por favor, permite las ventanas emergentes para esta página.');
+            }
+        }
+    </script>
+</body>
+
+</html>
