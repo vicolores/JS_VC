@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Información de la Resolución de la Pantalla</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>Información de la Resolución de la Pantalla</h3>
+  <div id="informacionPantalla"></div>
+  <button id="actualizarBtn">Actualizar Información</button>
+
+  <script>
+    // Función para mostrar la información de la pantalla
+    function mostrarInformacionPantalla() {
+      const anchuraPantalla = screen.width;
+      const alturaPantalla = screen.height;
+      const profundidadColor = screen.colorDepth;
+
+      const informacionPantallaDiv = document.getElementById("informacionPantalla");
+      informacionPantallaDiv.innerHTML = `
+        <p><strong>Anchura de la pantalla:</strong> ${anchuraPantalla} píxeles</p>
+        <p><strong>Altura de la pantalla:</strong> ${alturaPantalla} píxeles</p>
+        <p><strong>Profundidad de color:</strong> ${profundidadColor} bits</p>
+      `;
+    }
+
+    // Agregar el evento al botón para actualizar la información
+    document.addEventListener("DOMContentLoaded", () => {
+      mostrarInformacionPantalla();
+
+      const actualizarBtn = document.getElementById("actualizarBtn");
+      actualizarBtn.addEventListener("click", () => {
+        mostrarInformacionPantalla();
+      });
+    });
+  </script>
+</body>
+
+</html>

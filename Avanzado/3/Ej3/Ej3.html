@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Información del Navegador</title>
+</head>
+<body>
+  <!-- El script JavaScript se incluirá aquí -->
+  <script>
+    // Obtener la información del navegador
+    const nombreNavegador = navigator.userAgent;
+    const sistemaOperativo = navigator.platform;
+    const idiomaNavegador = navigator.language;
+    const estadoConexion = navigator.onLine ? "En línea" : "Desconectado";
+
+    // Crear una función para mostrar la información en la página
+    document.addEventListener("DOMContentLoaded", () => {
+      const informacionDiv = document.createElement("div");
+      informacionDiv.innerHTML = `
+        <h3>Información del navegador</h3>
+        <p><strong>Nombre del navegador:</strong> ${nombreNavegador}</p>
+        <p><strong>Sistema operativo:</strong> ${sistemaOperativo}</p>
+        <p><strong>Idioma del navegador:</strong> ${idiomaNavegador}</p>
+        <p><strong>Estado de conexión:</strong> ${estadoConexion}</p>
+      `;
+      document.body.appendChild(informacionDiv);
+    });
+  </script>
+</body>
+</html>
+
+
