@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barra de Progreso</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <progress id="barra_progreso" max="100" value="0"></progress>
+
+  <script>
+    let value = 0;
+    setInterval(() => {
+      if (value < 100) {
+        value++;
+        document.getElementById('barra_progreso').value = value;
+      }
+    }, 50);
+  </script>
+</body>
+
+</html>

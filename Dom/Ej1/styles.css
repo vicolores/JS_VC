@@ -1,0 +1,32 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#barra_progreso {
+  width: 80%;
+  height: 30px;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+#barra_progreso::-webkit-progress-bar {
+  background-color: #e0e0e0;
+}
+
+#barra_progreso::-webkit-progress-value {
+  background-color: #007BFF;
+  /* Azul, el color favorito */
+}
+
+#barra_progreso::-moz-progress-bar {
+  background-color: #007BFF;
+  /* Azul para Firefox */
+}
