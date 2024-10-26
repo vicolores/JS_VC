@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Muestra 1 para ejarcicios dhtml</title>
+  <style>
+    .boton {
+      border: 1px solid black;
+      padding: 2px 10px;
+      background: rgba(27, 109, 236, 0.61);
+      color: white;
+      font-family: Arial, sans-seriff;
+      width: fit-content;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .paneles {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .paneles figure {
+      width: 75px;
+    }
+
+    .activo {
+      color: blue;
+      font-family: Arial, "sans-serif";
+    }
+
+    .destacar {
+      font-size: 18px;
+      color: red;
+    }
+
+    .carrusel {
+      text-align: center;
+      background: #727c331a;
+      border: 1px solid black;
+      width: fit-content;
+      margin: 24px auto;
+      width: 100px;
+      padding: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="botones">
+    <div onclick="toggle()" class="boton">Abrir - cerrar</div>
+    <div onclick="cambiar()" class="boton">Cambiar título</div>
+    <div onclick="crearDiv()" class="boton">Crear bloque</div>
+    <div onclick="borrarDiv()" class="boton">Borrar bloque</div>
+    <div onclick="fuentesImg()" class="boton">Fuentes</div>
+    <div onclick="intercalar()" class="boton">Subtitulo</div>
+  </section>
+  <header>
+    <h1 id="titular" onclick="togleClase()">Hola Mundo</h1>
+  </header>
+  <div id="subtitulo" style="text-align:center">Página de muestra de javascript dhtml</div>
+  <div class="paneles">
+    <figure onclick="ponerPie(0)"><img src="https://i.pinimg.com/474x/f5/09/83/f5098391d3043eac6d71cd8eca8bc4e7.jpg"
+        width="33" height="75" alt="Número 1" />
+      <figcaption></figcaption>
+    </figure>
+    <figure onclick="ponerPie(1)"><img src="https://i.pinimg.com/736x/ed/2c/7c/ed2c7ce959c8c0786b79b8c85b5e64b9.jpg"
+        width="50" height="75" alt="Número 2" />
+      <figcaption></figcaption>
+    </figure>
+    <figure onclick="ponerPie(2)"><img
+        src="https://i.pinimg.com/originals/7b/93/3b/7b933bae93c262a87353993287a37362.png" width="49" height="75"
+        alt="Número 3" />
+      <figcaption></figcaption>
+    </figure>
+  </div>
+  <div id="fuentes"></div>
+  <div class="carrusel" data-img="0" onclick="cambiaImg()">
+    <img src="../imgs/uno.png" alt="Diapositivas" id="diapo">
+  </div>
+  <!-- inicio de las funciones javascript pedidas en los ejercicios -->
+  <script>
+    function cambiar() { 
+      let titulo = document.getElementById("titular");
+      /* // Ejercicio 2
+        titulo.innerHTML = "Hola Mundo con Javascript";
+        document.getElementById("titular").innerHTML = "Hola Mundo con Javascript";
+      */
+      /* // Ejercicio 3
+        titulo.style.color = "red";
+        titulo.style.textAlign = "center";
+      */
+    }
+    function crearDiv() {
+      // Ejercicio 4
+      // Crear el nuevo elemento div
+      let nuevoDiv = document.createElement("div");
+
+      // Establecer el contenido del div
+      //nuevoDiv.innerHTML = "Javascript permite crear páginas dinámicas";
+      // Crear nodo de tipo Text
+      var contenido = document.createTextNode("Javascript permite crear páginas dinámicas");
+      nuevoDiv.appendChild(contenido);
+
+      // Establecer los estilos del div
+      nuevoDiv.style.backgroundColor = "red";
+      nuevoDiv.style.color = "white";
+      nuevoDiv.style.textAlign = "center";
+
+      // Añadir el div al body del documento
+      document.body.appendChild(nuevoDiv);
+    }
+    function borrarDiv() {
+      // Ejercicio 5
+      let elemento = document.getElementById("subtitulo");
+      elemento.remove();
+    }
+    function ponerPie(fig) {
+      // Ejercicio 6
+      let elemento = document.getElementsByTagName("img")[fig];
+      
+      let pie = elemento.nextElementSibling;  // Va directamente al siguiente elemento hermano
+      //let pie = elemento.parentNode.getElementsByTagName("figcaption")[0];
+      pie.innerHTML = elemento.alt;
+    }
+    function fuentesImg() {
+       // Selecciona todas las imágenes de la página
+      let imagenes = document.getElementsByTagName("img");
+      // Selecciona el div con id 'fuentes'
+      let fuentesDiv = document.getElementById("fuentes");
+
+      // Limpia el contenido anterior del div
+      fuentesDiv.innerHTML = "";
+
+      // Recorre las imágenes y añade sus URLs al div
+      for (let i = 0; i < imagenes.length; i++) {
+        let url = imagenes[i].src;
+        fuentesDiv.innerHTML += "Imagen " + (i + 1) + ": " + url + "<br>";
+      }
+    }
+    function togleClase() {
+     // Selecciona el elemento que contiene al encabezado (el <header>)
+      let contenedor = document.querySelector("header");
+
+      // Alterna la clase 'activo' en el contenedor
+      contenedor.classList.toggle("activo");
+    }
+     function nuevoBloque() {
+        // Crear nuevo elemento div
+        const nuevoDiv = document.createElement('div');
+
+        // Añadir la clase destacar
+        nuevoDiv.className = 'destacar';
+
+        // Crear elemento strong para el texto en negrita
+        const textoNegrita = document.createElement('strong');
+        textoNegrita.textContent = 'Página web';
+
+        // Añadir el texto en negrita al div
+        nuevoDiv.appendChild(textoNegrita);
+
+        // Obtener referencia al titular y al subtítulo
+        const subtitulo = document.getElementById('subtitulo');
+
+        // Insertar el nuevo div antes del subtítulo
+        subtitulo.parentNode.insertBefore(nuevoDiv, subtitulo);
+      }
+    function intercalar() {
+      // Crear nuevo elemento div
+      let nuevoDiv = document.createElement('div');
+
+      // 2. Añadirle la clase destacar
+      nuevoDiv.className = 'destacar';
+
+      // 3. Poner el texto "Página web" en negrita
+      nuevoDiv.innerHTML = "<strong>Página web</strong>";
+
+      // 4. Colocar el nuevo div antes del subtítulo
+      let subtitulo = document.getElementById('subtitulo');
+      subtitulo.insertAdjacentElement('beforebegin', nuevoDiv);
+    }
+    function cambiaImg() {
+
+    }
+    function toggle() {
+      // Paso 1: Encontrar todos los botones excepto el primero
+      const botones = document.getElementsByClassName('boton'); // Obtiene todos los botones
+
+      // Paso 2: Recorrer los botones (saltamos el primer botón empezando desde 1)
+      for (let i = 1; i < botones.length; i++) {
+        // Paso 3: Para cada botón, si está visible lo ocultamos
+        if (botones[i].style.display !== 'none') {
+          botones[i].style.display = 'none';  // Ocultar botón
+        }
+        // Si está oculto, lo mostramos
+        else {
+          botones[i].style.display = 'inline-block';  // Mostrar botón
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
