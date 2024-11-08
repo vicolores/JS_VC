@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 3 - Prueba de Colores</title>
+  <script>
+    function cambiarColor(color) {
+      let div = document.getElementById("colorDiv");
+      div.style.backgroundColor = color;
+    }
+
+    function restaurarColor() {
+      let div = document.getElementById("colorDiv");
+      div.style.backgroundColor = "white";
+    }
+  </script>
+  <style>
+    #colorDiv {
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+      border: 1px solid #000;
+      margin-bottom: 20px;
+    }
+
+    button {
+      font-size: 14px;
+      padding: 10px;
+      margin: 5px;
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    button:active {
+      background-color: #003f7f;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="colorDiv">Bienvenido a esta página de prueba de colores</div>
+  <button onclick="cambiarColor('blue')">Azul</button>
+  <button onclick="cambiarColor('green')">Verde</button>
+  <button onclick="restaurarColor()">Restablecer color inicial</button>
+</body>
+
+</html>

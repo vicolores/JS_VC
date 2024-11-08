@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 2</title>
+  <script>
+    function anadirElemento() {
+      let nuevoElemento = document.createElement("li");
+      nuevoElemento.textContent = "elefante";
+      document.getElementById("listaelemen").appendChild(nuevoElemento);
+    }
+
+    function insertarElemento() {
+      let nuevoElemento = document.createElement("li");
+      nuevoElemento.textContent = "hipopótamo";
+      let lista = document.getElementById("listaelemen");
+      let primerElemento = lista.getElementsByTagName("li")[0];
+      lista.insertBefore(nuevoElemento, primerElemento.nextSibling);
+    }
+
+    function reemplazarElemento() {
+      let lista = document.getElementById("listaelemen");
+      let segundoElemento = lista.getElementsByTagName("li")[1];
+      if (segundoElemento) {
+        let nuevoElemento = document.createElement("li");
+        nuevoElemento.textContent = "tigre";
+        lista.replaceChild(nuevoElemento, segundoElemento);
+      }
+    }
+
+    function borrarElemento() {
+      let lista = document.getElementById("listaelemen");
+      let segundoElemento = lista.getElementsByTagName("li")[1];
+      if (segundoElemento) {
+        lista.removeChild(segundoElemento);
+      }
+    }
+
+    function clonarListaCompleta() {
+      let lista = document.getElementById("listaelemen");
+      let clon = lista.cloneNode(true);
+      document.body.appendChild(clon);
+    }
+
+    function crearSublistaConDOM() {
+      let lista = document.getElementById("listaelemen");
+      let primerElemento = lista.getElementsByTagName("li")[0];
+      let sublista = document.createElement("ul");
+      let itemSublista = document.createElement("li");
+      itemSublista.textContent = "Salvaje";
+      sublista.appendChild(itemSublista);
+      primerElemento.appendChild(sublista);
+    }
+
+    function crearSublistaConInnerHTML() {
+      let lista = document.getElementById("listaelemen");
+      let primerElemento = lista.getElementsByTagName("li")[0];
+      primerElemento.innerHTML += '<ul><li>Salvaje</li></ul>';
+    }
+  </script>
+</head>
+
+<body>
+  <h1>ANIMALES</h1>
+  <ul id="listaelemen">
+    <li>leon</li>
+    <li>pantera</li>
+    <li>jirafa</li>
+  </ul>
+  <button onclick="anadirElemento()">Añadir nuevo elemento</button>
+  <button onclick="insertarElemento()">Insertar nuevo elemento</button>
+  <button onclick="reemplazarElemento()">Reemplazar elemento</button>
+  <button onclick="borrarElemento()">Borrar elemento</button>
+  <button onclick="clonarListaCompleta()">Clonar la lista completa</button>
+  <button onclick="crearSublistaConDOM()">Crear Sublista dentro de león con funciones DOM</button>
+  <button onclick="crearSublistaConInnerHTML()">Crear Sublista dentro de león con innerHTML</button>
+</body>
+
+</html>

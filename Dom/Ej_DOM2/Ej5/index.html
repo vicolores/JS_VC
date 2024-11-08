@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Añadir Atributos con Botón</title>
+  <script>
+    function crearElementoConAtributos() {
+      // Crear el elemento input
+      let nuevoInput = document.createElement("input");
+
+      // Agregar atributos al elemento
+      nuevoInput.setAttribute("type", "text");
+      nuevoInput.setAttribute("placeholder", "Escribe algo...");
+      nuevoInput.setAttribute("id", "miInput");
+      nuevoInput.setAttribute("style", "margin-top: 10px; padding: 5px; width: 200px;");
+
+      // Añadir el nuevo elemento al body
+      document.body.appendChild(nuevoInput);
+    }
+  </script>
+  <style>
+    button {
+      font-size: 14px;
+      padding: 10px;
+      margin: 5px;
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    button:active {
+      background-color: #003f7f;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Crear Elemento con Atributos</h1>
+  <button onclick="crearElementoConAtributos()">Crear Elemento</button>
+</body>
+
+</html>

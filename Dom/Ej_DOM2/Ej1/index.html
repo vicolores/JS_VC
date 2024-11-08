@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 1</title>
+  <script>
+    function anadirParrafo() {
+      let nuevoParrafo = document.createElement("p");
+      nuevoParrafo.textContent = "Párrafo añadido";
+      document.getElementById("divisor").appendChild(nuevoParrafo);
+    }
+
+    function insertarParrafo() {
+      let nuevoParrafo = document.createElement("p");
+      nuevoParrafo.textContent = "Párrafo insertado";
+      let divisor = document.getElementById("divisor");
+      let primerParrafo = divisor.getElementsByTagName("p")[0];
+      divisor.insertBefore(nuevoParrafo, primerParrafo.nextSibling);
+    }
+
+    function reemplazarParrafo() {
+      let divisor = document.getElementById("divisor");
+      let segundoParrafo = divisor.getElementsByTagName("p")[1];
+      if (segundoParrafo) {
+        let nuevoParrafo = document.createElement("p");
+        nuevoParrafo.textContent = "Párrafo reemplazado";
+        divisor.replaceChild(nuevoParrafo, segundoParrafo);
+      }
+    }
+
+    function borrarParrafo() {
+      let divisor = document.getElementById("divisor");
+      let segundoParrafo = divisor.getElementsByTagName("p")[1];
+      if (segundoParrafo) {
+        divisor.removeChild(segundoParrafo);
+      }
+    }
+
+    function clonarDiv() {
+      let divisor = document.getElementById("divisor");
+      let clon = divisor.cloneNode(true);
+      document.body.appendChild(clon);
+    }
+  </script>
+</head>
+
+<body>
+  <div id="divisor">
+    <p>Este es mi primer párrafo</p>
+  </div>
+  <button onclick="anadirParrafo()">Añadir nuevo párrafo</button>
+  <button onclick="insertarParrafo()">Insertar nuevo párrafo</button>
+  <button onclick="reemplazarParrafo()">Reemplazar párrafo</button>
+  <button onclick="borrarParrafo()">Borrar párrafo</button>
+  <button onclick="clonarDiv()">Clonar div</button>
+</body>
+
+</html>
