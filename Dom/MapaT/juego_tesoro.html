@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Treasure Map</title>
+  <style>
+    body {
+      background: #34495e;
+      color: #fff;
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    p {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Encuentra el Tesoro pirata</h1>
+  <img src="treasuremap.png" width="400" height="400" id="map" draggable="false">
+  <p id="distance"></p>
+
+  <script>
+    // Generar las coordenadas del tesoro aleatoriamente
+    const treasure = {
+      x: Math.floor(Math.random() * 400),
+      y: Math.floor(Math.random() * 400)
+    };
+
+    let clicks = 0;
+
+    // Calcular la distancia entre el clic y el tesoro
+    function getDistance(event) {
+      const diffX = event.offsetX - treasure.x;
+      const diffY = event.offsetY - treasure.y;
+      return Math.sqrt(diffX * diffX + diffY * diffY);
+    }
+
+    // Dar una pista sobre la cercanía al tesoro
+    function getDistanceHint(distance) {
+      if (distance < 20) {
+        return "Muy caliente";
+      } else if (distance < 50) {
+        return "Caliente";
+      } else if (distance < 100) {
+        return "Templado";
+      } else if (distance < 200) {
+        return "Frio";
+      } else {
+        return "Muy frio";
+      }
+    }
+
+    // Manejar el clic en el mapa
+    const map = document.getElementById("map");
+    map.addEventListener("click", function (event) {
+      clicks++;
+      const distance = getDistance(event);
+      const distanceHint = getDistanceHint(distance);
+      document.getElementById("distance").textContent = distanceHint;
+
+      if (distance < 20) {
+        alert(`¡Has encontrado el tesoro con ${clicks} clicks!`);
+      }
+    });
+  </script>
+</body>
+
+</html>
