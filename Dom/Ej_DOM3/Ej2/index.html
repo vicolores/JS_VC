@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulario DNI</title>
+</head>
+
+<body>
+    <h2>Formulario DNI</h2>
+
+    <form id="dniForm">
+        <label for="dni">DNI:</label><br />
+        <input type="text" id="dni" name="dni" /><br /><br />
+        <button type="button" onclick="enviarDni()">Enviar</button>
+    </form>
+
+    <script>
+        function enviarDni() {
+            let dni = document.getElementById("dni").value;
+            if (dni === "") {
+                alert("Por favor, ingresa un DNI.");
+            } else {
+                // Aquí puedes realizar la lógica de envío del DNI
+                console.log("DNI ingresado:", dni);
+            }
+        }
+    </script>
+</body>
+
+</html>

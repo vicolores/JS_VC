@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zonas de la Pantalla</title>
+</head>
+
+<body>
+    <h1>Zonas de la Pantalla</h1>
+    <p id="zona">Haz clic en cualquier parte de la pantalla</p>
+
+    <script>
+        // Función para obtener el tamaño de la ventana del navegador
+        function tamanoVentanaNavegador() {
+            return {
+                width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+                height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+            };
+        }
+
+        // Función para determinar en qué zona se hizo clic
+        function determinaZona(evento) {
+            var tamanoVentana = tamanoVentanaNavegador(); // Obtener dimensiones de la ventana
+            var x = evento.clientX; // Coordenada X del clic
+            var y = evento.clientY; // Coordenada Y del clic
+
+            // Determinar la zona
+            var zona = "";
+            if (x < tamanoVentana.width / 2 && y < tamanoVentana.height / 2) {
+                zona = "Izquierda Arriba";
+            } else if (x < tamanoVentana.width / 2 && y >= tamanoVentana.height / 2) {
+                zona = "Izquierda Abajo";
+            } else if (x >= tamanoVentana.width / 2 && y < tamanoVentana.height / 2) {
+                zona = "Derecha Arriba";
+            } else if (x >= tamanoVentana.width / 2 && y >= tamanoVentana.height / 2) {
+                zona = "Derecha Abajo";
+            }
+
+            // Mostrar la zona en el elemento con id "zona"
+            document.getElementById("zona").innerHTML = "Has pulsado en la zona: " + zona;
+        }
+
+        // Asociar el evento "click" a la función determinaZona
+        document.addEventListener("click", determinaZona);
+    </script>
+</body>
+
+</html>

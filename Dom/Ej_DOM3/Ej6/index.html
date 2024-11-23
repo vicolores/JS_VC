@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Suma con eval</title>
+</head>
+<body>
+    <h1>Suma de cadenas</h1>
+
+    <p>Introduce una cadena de texto:</p>
+    <input type="text" id="cadena"><br><br>
+
+    <button onclick="calculo()">Calcular</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function calculo() {
+            let cadena = document.getElementById("cadena").value;
+            try { 
+                
+                let numero1 = eval (cadena);
+                let resultado = numero1
+                document.getElementById("resultado").innerHTML = "La suma es: " + resultado;
+                document.getElementById("cadena").value = "La suma es: " + resultado;
+            } catch (error) {
+                document.getElementById("resultado").innerHTML = "Error: La cadena no es un número válido.";
+            }
+        }
+    </script>
+</body>
+</html>
+

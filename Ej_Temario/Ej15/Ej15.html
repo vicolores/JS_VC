@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Información</h1>
+    <div id="raton-cuadro"
+        style="border: 1px solid black;">
+        <h2>Ratón</h2>
+        <p id="raton">Navegador: [ ]</p>
+        <p id="pagina">Página: [ ]</p>
+    </div>
+    <div id="teclado-cuadro"
+        style="border: 1px solid black; margin: 10px 0;">
+        <h2>Teclado</h2>
+        <p id="caracter">Carácter: [ ]</p>
+        <p id="codigo">Código: [ ]</p>
+    </div>
+    <script>
+        // Función para mostrar las coordenadas del ratón
+        function muestraInformacionRaton(elEvento) {
+            var evento = elEvento || window.event; // Compatibilidad con navegadores antiguos
+            var coordenadaX = evento.clientX; // Coordenada X del ratón
+            var coordenadaY = evento.clientY; // Coordenada Y del ratón
+            var paginaX = evento.pageX; // Coordenada X en la página
+            var paginaY = evento.pageY; // Coordenada Y en la página
+
+            // Mostrar las coordenadas en el elemento con id "raton"
+            document.getElementById("raton").innerHTML = "Navegador: [" + coordenadaX + ", " + coordenadaY + "]";
+            document.getElementById("pagina").innerHTML = "Página: [" + paginaX + ", " + paginaY + "]";
+        }
+
+        // Función para mostrar información del teclado y cambiar el color de fondo
+        function muestraInformacionTeclado(elEvento) {
+            var evento = elEvento || window.event; // Compatibilidad con navegadores antiguos
+            var tecla = evento.key; // Tecla pulsada
+            var codigoTecla = evento.keyCode; // Código de la tecla pulsada
+
+            // Mostrar la información de la tecla
+            document.getElementById("caracter").innerHTML = "Carácter: [" + tecla + "]";
+            document.getElementById("codigo").innerHTML = "Código: [" + codigoTecla + "]";
+
+            // Cambiar el color de fondo del recuadro "Teclado"
+            //document.getElementById("teclado-cuadro").style.backgroundColor = "#CCE6FF"; // Azul claro
+            cambiarColorFondo("teclado-cuadro", "#CCE6FF"); // Llamar a la función para cambiar el color de fondo
+        }
+
+        // Función para cambiar el color de fondo del recuadro
+        function cambiarColorFondo(id, color) {
+            document.getElementById(id).style.backgroundColor = color;
+        }
+
+        // Asociar los eventos a las funciones
+        document.addEventListener("mousemove", muestraInformacionRaton);
+        document.addEventListener("keydown", muestraInformacionTeclado);
+
+        // Asociar el evento "click" para cambiar el color del recuadro "Ratón"
+        document.getElementById("raton-cuadro").addEventListener("click", function () {
+            cambiarColorFondo("raton-cuadro", "#FFFFCC"); // Amarillo claro
+        });
+    </script>
+</body>
+
+</html>

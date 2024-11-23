@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hípervínculo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Página con Hipervínculo</h1>
+
+    <a href="https://www.google.com">Visita Google</a>
+
+    <script>
+        const links = document.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('mouseover', () => {
+                alert("¡Estás sobre un hipervínculo!");
+            });
+        });
+    </script>
+
+</body>
+</html>
