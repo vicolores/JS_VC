@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta nombre="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Cookies con Botones</title>
+    <script>
+        function setCookie(nombre, value) {
+            document.cookie = nombre + "=" + value + "; path=/";
+        }
+
+        function deleteCookie(nombre) {
+            document.cookie = nombre + '=; Max-Age=0; path=/';
+        }
+
+        function crearCookie1() {
+            setCookie("cookie1", "valor1");
+            alert("Cookie 1 creada ");
+        }
+
+        function crearCookie2() {
+            setCookie("cookie2", "valor2");
+            alert("Cookie 2 creada ");
+        }
+
+        function mostrarCookies() {
+            cookies = document.cookie;
+            alert(cookies ? "Cookies actuales: " + cookies : "No hay cookies creadas.");
+        }
+
+        function borrarCookie1() {
+            deleteCookie("cookie1");
+            alert("Cookie 1 eliminada ");
+        }
+
+        function borrarCookie2() {
+            deleteCookie("cookie2");
+            alert("Cookie 2 eliminada ");
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Gestión de Cookies</h1>
+    <button onclick="crearCookie1()">Crear Cookie 1</button>
+    <button onclick="crearCookie2()">Crear Cookie 2</button>
+    <button onclick="mostrarCookies()">Mostrar Cookies</button>
+    <button onclick="borrarCookie1()">Borrar Cookie 1</button>
+    <button onclick="borrarCookie2()">Borrar Cookie 2</button>
+</body>
+
+</html>

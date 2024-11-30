@@ -5,6 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ejercicio 2</title>
+  <style>
+    #arrayAsociativo {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+    }
+  </style>
   <script>
     function anadirElemento() {
       let nuevoElemento = document.createElement("li");
@@ -14,10 +22,29 @@
 
     function insertarElemento() {
       let nuevoElemento = document.createElement("li");
-      nuevoElemento.textContent = "hipopótamo";
+      let nuevoAnimal = prompt("Ingrese el nombre del animal");
+      nuevoElemento.textContent = nuevoAnimal;
       let lista = document.getElementById("listaelemen");
       let primerElemento = lista.getElementsByTagName("li")[0];
       lista.insertBefore(nuevoElemento, primerElemento.nextSibling);
+
+      mostrarInsertarElemento();
+    }
+
+    function mostrarInsertarElemento() {
+      // Crear un array asociativo con todos los elementos de la lista
+      let lista = document.getElementById("listaelemen");
+      let listaAsociativa = {};
+      for (let i = 0; i < lista.children.length; i++) {
+        listaAsociativa[i] = lista.children[i].textContent;
+      }
+
+      // Mostrar el array asociativo al final de la pantalla 
+      let textoArrayAsociativo = document.getElementById("textoArrayAsociativo");
+      textoArrayAsociativo.innerHTML = "Array Asociativo: ";
+      for (let clave in listaAsociativa) {
+        textoArrayAsociativo.innerHTML += `${clave}: ${listaAsociativa[clave]} `;
+      }
     }
 
     function reemplazarElemento() {
@@ -27,6 +54,7 @@
         let nuevoElemento = document.createElement("li");
         nuevoElemento.textContent = "tigre";
         lista.replaceChild(nuevoElemento, segundoElemento);
+        mostrarInsertarElemento();
       }
     }
 
@@ -35,6 +63,7 @@
       let segundoElemento = lista.getElementsByTagName("li")[1];
       if (segundoElemento) {
         lista.removeChild(segundoElemento);
+        mostrarInsertarElemento();
       }
     }
 
@@ -76,6 +105,10 @@
   <button onclick="clonarListaCompleta()">Clonar la lista completa</button>
   <button onclick="crearSublistaConDOM()">Crear Sublista dentro de león con funciones DOM</button>
   <button onclick="crearSublistaConInnerHTML()">Crear Sublista dentro de león con innerHTML</button>
+
+  <div id="arrayAsociativo">
+    <p id="textoArrayAsociativo"></p>
+  </div>
 </body>
 
 </html>

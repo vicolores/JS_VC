@@ -35,6 +35,15 @@
       } else {
         document.getElementById("enlaces-tercer-parrafo").textContent = "No hay tercer párrafo en la página.";
       }
+
+      // Cambiar color de fondo de los parrafos
+      var parrafos = document.getElementsByTagName('p');
+      var colores = ["red", "green", "blue"];
+      for (var i = 0; i < parrafos.length; i++) {
+        if (i < colores.length) {
+          parrafos[i].style.backgroundColor = colores[i];
+        }
+      }
     }
   </script>
 </head>
