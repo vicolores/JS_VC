@@ -17,11 +17,12 @@
     <script>
         function enviarDni() {
             let dni = document.getElementById("dni").value;
-            if (dni === "") {
-                alert("Por favor, ingresa un DNI.");
-            } else {
+            if (dni !== "") {
                 // Aquí puedes realizar la lógica de envío del DNI
-                console.log("DNI ingresado:", dni);
+                alert("DNI ingresado:", dni);
+                
+            } else {
+                alert("Por favor, ingresa un DNI.");
             }
         }
     </script>
