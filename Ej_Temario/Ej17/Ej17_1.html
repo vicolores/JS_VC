@@ -1,64 +1,71 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Limitador de Caracteres</title>
     <style>
-        body {
-            font-family: sans-serif;
-        }
+      body {
+        font-family: sans-serif;
+      }
 
-        #contenedor {
-            width: 500px;
-            margin: 20px auto;
-        }
+      #contenedor {
+        width: 500px;
+        margin: 20px auto;
+      }
 
-        #contador {
-            text-align: right;
-            font-size: small;
-            color: #777;
-        }
+      #contador {
+        text-align: right;
+        font-size: small;
+        color: #777;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div id="contenedor">
-        <textarea id="texto" onkeyup="actualizarContador()" onkeydown="return manejarTeclas(event);" rows="5"
-            cols="60"></textarea>
-        <div id="contador">100 caracteres restantes</div>
+      <textarea
+        id="texto"
+        onkeyup="actualizarContador()"
+        onkeydown="return manejarTeclas(event);"
+        rows="5"
+        cols="60"
+      ></textarea>
+      <div id="contador">100 caracteres restantes</div>
     </div>
 
     <script>
-        const maximoCaracteres = 100;
-        const texto = document.getElementById("texto");
-        const contador = document.getElementById("contador");
+      const maximoCaracteres = 100;
+      const texto = document.getElementById("texto");
+      const contador = document.getElementById("contador");
 
-        function actualizarContador() {
-            let caracteresRestantes = maximoCaracteres - texto.value.length;
-            contador.textContent = caracteresRestantes + " caracteres restantes";
-            if (caracteresRestantes < 0) {
-                contador.style.color = "red";
-            } else {
-                contador.style.color = "#777";
-            }
+      function actualizarContador() {
+        let caracteresRestantes = maximoCaracteres - texto.value.length;
+        contador.textContent = caracteresRestantes + " caracteres restantes";
+        if (caracteresRestantes < 0) {
+          contador.style.color = "red";
+        } else {
+          contador.style.color = "#777";
         }
+      }
 
-        function manejarTeclas(event) {
-            let tecla = event.key;
-            let caracteres = texto.value.length;
+      function manejarTeclas(event) {
+        let tecla = event.key;
+        let caracteres = texto.value.length;
 
-            if (caracteres >= maximoCaracteres && tecla != "Backspace" && tecla != "Delete" && tecla != "ArrowLeft" && tecla != "ArrowRight" && tecla != "Tab") {
-                event.preventDefault(); // Evita la entrada de más caracteres
-            }
-            actualizarContador(); //Se llama a actualizar contador para que se actualice incluso cuando se usan las teclas especiales.
+        if (
+          caracteres >= maximoCaracteres &&
+          tecla != "Backspace" &&
+          tecla != "Delete" &&
+          tecla != "ArrowLeft" &&
+          tecla != "ArrowRight" &&
+          tecla != "Tab"
+        ) {
+          event.preventDefault(); // Evita la entrada de más caracteres
         }
+        actualizarContador(); //Se llama a actualizar contador para que se actualice incluso cuando se usan las teclas especiales.
+      }
 
-        // Llamada inicial para mostrar el contador al cargar la página
-        actualizarContador();
-
+      // Llamada inicial para mostrar el contador al cargar la página
+      actualizarContador();
     </script>
-
-</body>
-
+  </body>
 </html>

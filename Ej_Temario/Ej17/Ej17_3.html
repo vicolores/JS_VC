@@ -1,83 +1,92 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Limitador de Caracteres con Formulario</title>
     <style>
-        body {
-            font-family: sans-serif;
-        }
+      body {
+        font-family: sans-serif;
+      }
 
-        #contenedor {
-            width: 500px;
-            margin: 20px auto;
-        }
+      #contenedor {
+        width: 500px;
+        margin: 20px auto;
+      }
 
-        #contador {
-            text-align: right;
-            font-size: small;
-            color: #777;
-        }
+      #contador {
+        text-align: right;
+        font-size: small;
+        color: #777;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div id="contenedor">
-        <form id="formulario" action="#">
-            <textarea id="texto" onkeyup="actualizarContador()" onkeydown="return manejarTeclas(event);" rows="5"
-                cols="60"></textarea>
-            <div id="contador">100 caracteres restantes</div>
-            <br>
-            <input type="button" value="Enviar" onclick="enviarFormulario(this)" />
-        </form>
+      <form id="formulario" action="#">
+        <textarea
+          id="texto"
+          onkeyup="actualizarContador()"
+          onkeydown="return manejarTeclas(event);"
+          rows="5"
+          cols="60"
+        ></textarea>
+        <div id="contador">100 caracteres restantes</div>
+        <br />
+        <input type="button" value="Enviar" onclick="enviarFormulario(this)" />
+      </form>
     </div>
 
     <script>
-        const maximoCaracteres = 100;
-        const texto = document.getElementById("texto");
-        const contador = document.getElementById("contador");
-        const formulario = document.getElementById("formulario");
+      const maximoCaracteres = 100;
+      const texto = document.getElementById("texto");
+      const contador = document.getElementById("contador");
+      const formulario = document.getElementById("formulario");
 
-        function actualizarContador() {
-            let caracteresRestantes = maximoCaracteres - texto.value.length;
-            contador.textContent = caracteresRestantes + " caracteres restantes";
-            if (caracteresRestantes < 0) {
-                contador.style.color = "red";
-            } else {
-                contador.style.color = "#777";
-            }
+      function actualizarContador() {
+        let caracteresRestantes = maximoCaracteres - texto.value.length;
+        contador.textContent = caracteresRestantes + " caracteres restantes";
+        if (caracteresRestantes < 0) {
+          contador.style.color = "red";
+        } else {
+          contador.style.color = "#777";
         }
+      }
 
-        function manejarTeclas(event) {
-            let tecla = event.key;
-            let caracteres = texto.value.length;
+      function manejarTeclas(event) {
+        let tecla = event.key;
+        let caracteres = texto.value.length;
 
-            if (caracteres >= maximoCaracteres && tecla != "Backspace" && tecla != "Delete" && tecla != "ArrowLeft" && tecla != "ArrowRight" && tecla != "Tab") {
-                event.preventDefault();
-            }
-            actualizarContador();
+        if (
+          caracteres >= maximoCaracteres &&
+          tecla != "Backspace" &&
+          tecla != "Delete" &&
+          tecla != "ArrowLeft" &&
+          tecla != "ArrowRight" &&
+          tecla != "Tab" &&
+          tecla != "a"
+        ) {
+          event.preventDefault();
         }
-
-        function enviarFormulario(boton) {
-            boton.disabled = true;
-            boton.value = 'Enviando...';
-
-            //Aquí se podría añadir una validación extra antes de enviar el formulario.
-            if (texto.value.trim() === "") { //Ejemplo: No permitir enviar si el textarea está vacío.
-                alert("Por favor, introduce un mensaje.");
-                boton.disabled = false;
-                boton.value = 'Enviar';
-                return false; //Evita el envío del formulario.
-            }
-
-            formulario.submit();
-        }
-
         actualizarContador();
+      }
 
+      function enviarFormulario(boton) {
+        boton.disabled = true;
+        boton.value = "Enviando...";
+
+        //Aquí se podría añadir una validación extra antes de enviar el formulario.
+        if (texto.value.trim() === "") {
+          //Ejemplo: No permitir enviar si el textarea está vacío.
+          alert("Por favor, introduce un mensaje.");
+          boton.disabled = false;
+          boton.value = "Enviar";
+          return false; //Evita el envío del formulario.
+        }
+
+        formulario.submit();
+      }
+
+      actualizarContador();
     </script>
-
-</body>
-
+  </body>
 </html>
