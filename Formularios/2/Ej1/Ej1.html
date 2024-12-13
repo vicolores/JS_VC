@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cambio de Imagen con MouseOver/Out</title>
+    <style>
+      #miImagen {
+        width: 300px; /* Ancho de la imagen (ajusta según necesites) */
+        height: auto; /* Altura automática para mantener la proporción */
+        display: block; /* Evita espaciados extra debajo de la imagen */
+        margin: 20px auto; /* Centra la imagen horizontalmente */
+      }
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>La web para aprender programación</h1>
+
+    <p>
+      Este es el primer párrafo de texto. Aquí puedes encontrar información y
+      recursos para aprender a programar. Desde conceptos básicos hasta temas
+      más avanzados, te guiaremos en tu camino hacia el desarrollo de software.
+    </p>
+
+    <p>
+      Este es el segundo párrafo. Continuamos ofreciendo contenido educativo de
+      alta calidad para ayudarte a mejorar tus habilidades de programación.
+      Explora nuestros tutoriales, ejercicios y ejemplos prácticos.
+    </p>
+
+    <img
+      id="miImagen"
+      src="Amanecer.jpg"
+      alt="Imagen Original"
+      onmouseover="this.src='Anochecer.jpg'"
+      onmouseout="this.src='Amanecer.jpg'"
+    />
+
+    <p>Pasa el ratón sobre la imagen para ver el cambio.</p>
+  </body>
+</html>

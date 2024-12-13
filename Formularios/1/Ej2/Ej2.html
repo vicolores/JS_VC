@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cambiar color de párrafo</title>
+    <style>
+      #miParrafo {
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="colorSelector">Selecciona un color:</label>
+    <select id="colorSelector">
+      <option value="verde">Verde</option>
+      <option value="azul">Azul</option>
+      <option value="rojo">Rojo</option>
+    </select>
+
+    <p id="miParrafo">
+      Este párrafo cambiará de color con la opción seleccionada del cuadro de
+      lista.
+    </p>
+
+    <script>
+      const selector = document.getElementById("colorSelector");
+      const parrafo = document.getElementById("miParrafo");
+
+      selector.addEventListener("change", function () {
+        const colorSeleccionado = this.value; // Obtiene el valor seleccionado
+
+        switch (colorSeleccionado) {
+          case "verde":
+            parrafo.style.color = "green"; //Cambia el color a verde
+            break;
+          case "azul":
+            parrafo.style.color = "blue"; //Cambia el color a azul
+            break;
+          case "rojo":
+            parrafo.style.color = "red"; //Cambia el color a rojo
+            break;
+          default:
+            parrafo.style.color = "black"; // Restablece a negro por defecto
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>

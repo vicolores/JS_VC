@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estilo de párrafo con checkboxes</title>
+    <style>
+      #miParrafo {
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+      }
+      .checkbox-group {
+        display: flex;
+        gap: 10px;
+        align-items: center; /*Alinear verticalmente*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="checkbox-group">
+      <input type="checkbox" id="negrita" />
+      <label for="negrita">Negrita</label>
+
+      <input type="checkbox" id="cursiva" />
+      <label for="cursiva">Cursiva</label>
+    </div>
+
+    <p id="miParrafo">Este párrafo cambiará de estilo según los checkboxes.</p>
+
+    <script>
+      const negritaCheckbox = document.getElementById("negrita");
+      const cursivaCheckbox = document.getElementById("cursiva");
+      const parrafo = document.getElementById("miParrafo");
+
+      negritaCheckbox.addEventListener("change", function () {
+        if (this.checked) {
+          parrafo.style.fontWeight = "bold";
+        } else {
+          parrafo.style.fontWeight = "normal";
+        }
+      });
+
+      cursivaCheckbox.addEventListener("change", function () {
+        if (this.checked) {
+          parrafo.style.fontStyle = "italic";
+        } else {
+          parrafo.style.fontStyle = "normal";
+        }
+      });
+
+      window.addEventListener("load", () => {
+        parrafo.style.fontWeight = "normal";
+        parrafo.style.fontStyle = "normal";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario con Validaciones</title>
+    <style>
+      .error {
+        border: 2px solid red;
+      }
+      .mensaje-error {
+        color: red;
+        font-size: 0.9em;
+      }
+      #resumen {
+        display: none;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="miFormulario" onsubmit="return validarFormulario()">
+      <label for="nombre">Nombre:</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        onfocus="limpiarError(this)"
+      />
+      <span id="errorNombre" class="mensaje-error"></span><br /><br />
+
+      <label for="apellidos">Apellidos:</label>
+      <input
+        type="text"
+        id="apellidos"
+        name="apellidos"
+        onfocus="limpiarError(this)"
+      />
+      <span id="errorApellidos" class="mensaje-error"></span><br /><br />
+
+      <label for="email">Correo electrónico:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        onfocus="limpiarError(this)"
+      />
+      <span id="errorEmail" class="mensaje-error"></span><br /><br />
+
+      <label for="telefono">Teléfono:</label>
+      <input
+        type="text"
+        id="telefono"
+        name="telefono"
+        placeholder="900 90 09 00"
+        onfocus="limpiarError(this)"
+      />
+      <span id="errorTelefono" class="mensaje-error"></span><br /><br />
+
+      <label for="codigoPostal">Código Postal:</label>
+      <input
+        type="number"
+        id="codigoPostal"
+        name="codigoPostal"
+        onfocus="limpiarError(this)"
+      />
+      <span id="errorCodigoPostal" class="mensaje-error"></span><br /><br />
+
+      <label>Edad:</label>
+      <input type="radio" id="edad1" name="edad" value="0-20" />
+      <label for="edad1">0-20</label>
+      <input type="radio" id="edad2" name="edad" value="20-40" />
+      <label for="edad2">20-40</label>
+      <input type="radio" id="edad3" name="edad" value="40-60" />
+      <label for="edad3">40-60</label>
+      <input type="radio" id="edad4" name="edad" value="60-100" />
+      <label for="edad4">60-100</label>
+      <span id="errorEdad" class="mensaje-error"></span><br /><br />
+
+      <label>¿Cómo nos conociste?</label>
+      <input type="checkbox" id="amigo" name="conociste" value="amigo" />
+      <label for="amigo">A través de un amigo</label>
+      <input type="checkbox" id="buscador" name="conociste" value="buscador" />
+      <label for="buscador">A través de un buscador</label>
+      <input
+        type="checkbox"
+        id="navegando"
+        name="conociste"
+        value="navegando"
+      />
+      <label for="navegando">Navegando por la red</label>
+      <input type="checkbox" id="otros" name="conociste" value="otros" />
+      <label for="otros">Otros</label>
+      <span id="errorConociste" class="mensaje-error"></span><br /><br />
+
+      <label for="opinion">Opinión sobre nuestra página web:</label><br />
+      <textarea
+        id="opinion"
+        name="opinion"
+        onfocus="limpiarError(this)"
+      ></textarea>
+      <span id="errorOpinion" class="mensaje-error"></span><br /><br />
+
+      <label for="sugerencias">¿Tiene alguna sugerencia?</label><br />
+      <textarea id="sugerencias" name="sugerencias"></textarea><br /><br />
+
+      <label for="navegacion">¿Cuánto navegas por internet?</label><br />
+      <select id="navegacion" name="navegacion" onfocus="limpiarError(this)">
+        <option value="">Seleccione</option>
+        <option value="4horas">4 horas al día</option>
+        <option value="10horas">10 horas a la semana</option>
+      </select>
+      <span id="errorNavegacion" class="mensaje-error"></span><br /><br />
+
+      <label for="contrasena">Contraseña:</label>
+      <input
+        type="password"
+        id="contrasena"
+        name="contrasena"
+        onfocus="limpiarError(this)"
+      />
+      <span id="errorContrasena" class="mensaje-error"></span><br /><br />
+
+      <label for="confirmarContrasena">Confirmar Contraseña:</label>
+      <input
+        type="password"
+        id="confirmarContrasena"
+        name="confirmarContrasena"
+        onfocus="limpiarError(this)"
+      />
+      <span id="errorConfirmarContrasena" class="mensaje-error"></span
+      ><br /><br />
+
+      <button type="submit" id="btnEnviar">Enviar formulario</button>
+      <button type="reset" onclick="confirmarBorrado()">
+        Borrar formulario
+      </button>
+    </form>
+
+    <div id="resumen"></div>
+
+    <script>
+      function validarFormulario() {
+        let valido = true;
+
+        // Validaciones existentes
+        const nombre = document.getElementById("nombre");
+        if (!nombre.value || /\d/.test(nombre.value)) {
+          mostrarError(
+            nombre,
+            "El nombre no puede estar vacío ni contener números."
+          );
+          valido = false;
+        }
+
+        // ... (resto de las validaciones que ya tenías: apellidos, email, telefono, etc.) ...
+
+        const contrasena = document.getElementById("contrasena");
+        const confirmarContrasena = document.getElementById(
+          "confirmarContrasena"
+        );
+        if (contrasena.value !== confirmarContrasena.value) {
+          mostrarError(confirmarContrasena, "Las contraseñas no coinciden.");
+          valido = false;
+        }
+
+        if (valido) {
+          mostrarResumen();
+          return false;
+        }
+
+        return valido;
+      }
+
+      function mostrarResumen() {
+        const form = document.getElementById("miFormulario");
+        const resumenDiv = document.getElementById("resumen");
+        const btnEnviar = document.getElementById("btnEnviar");
+
+        form.style.display = "none";
+        btnEnviar.style.display = "none";
+
+        let resumenHTML = "<h2>Resumen de datos:</h2><ul>";
+        for (let i = 0; i < form.elements.length; i++) {
+          const element = form.elements[i];
+          if (element.name) {
+            if (element.type === "radio" || element.type === "checkbox") {
+              if (element.checked) {
+                resumenHTML += `<li>${element.name}: ${element.value}</li>`;
+              }
+            } else if (
+              element.type !== "submit" &&
+              element.type !== "reset" &&
+              element.type !== "button"
+            ) {
+              resumenHTML += `<li>${element.name}: ${element.value}</li>`;
+            }
+          }
+        }
+        resumenHTML += "</ul>";
+        resumenDiv.innerHTML = resumenHTML;
+        resumenDiv.style.display = "block";
+      }
+
+      function mostrarError(campo, mensaje) {
+        campo.classList.add("error");
+        campo.nextElementSibling.textContent = mensaje;
+        campo.focus();
+      }
+
+      function limpiarError(campo) {
+        campo.classList.remove("error");
+        campo.nextElementSibling.textContent = "";
+      }
+
+      function confirmarBorrado() {
+        if (confirm("¿Estás seguro de que quieres borrar el formulario?")) {
+          document.getElementById("miFormulario").reset();
+        }
+      }
+
+      const inputsTexto = document.querySelectorAll('input[type="text"]');
+      inputsTexto.forEach((input) => {
+        input.addEventListener("input", function () {
+          this.value = this.value.replace(/\b\w/g, (l) => l.toUpperCase());
+        });
+      });
+
+      const btnEnviar = document.getElementById("btnEnviar");
+      const form = document.getElementById("miFormulario");
+      form.addEventListener("input", function () {
+        btnEnviar.disabled = !form.checkValidity();
+      });
+
+      btnEnviar.disabled = true;
+
+      document.getElementById("nombre").focus();
+
+      const contrasenaInput = document.getElementById("contrasena");
+
+      contrasenaInput.addEventListener("input", () => {
+        const contrasena = contrasenaInput.value;
+        const confirmarContrasenaInput = document.getElementById(
+          "confirmarContrasena"
+        );
+
+        if (confirmarContrasenaInput) {
+          // Verifica si el campo existe antes de acceder a él.
+          limpiarError(confirmarContrasenaInput);
+        }
+
+        if (contrasena.length == 0) {
+          if (confirmarContrasenaInput) {
+            confirmarContrasenaInput.disabled = true;
+          }
+        } else {
+          if (confirmarContrasenaInput) {
+            confirmarContrasenaInput.disabled = false;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

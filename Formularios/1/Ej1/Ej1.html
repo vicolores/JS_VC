@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+    <style>
+      label {
+        display: block;
+        margin: 10px 0 5px;
+      }
+      label.inline {
+        display: inline-block;
+        margin-right: 10px; /* Espacio entre los elementos */
+      }
+      label.sexo {
+        display: inline-block;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>FORMULARIO</h1>
+    <form id="miFormulario">
+      <!-- Campo Nombre -->
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required />
+
+      <!-- Campo Apellidos -->
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" id="apellidos" name="apellidos" />
+
+      <!-- Campo Teléfono -->
+      <label for="telefono">Teléfono:</label>
+      <input
+        type="text"
+        id="telefono"
+        name="telefono"
+        pattern="\d{9}"
+        title="Debe contener 9 dígitos"
+        required
+      />
+
+      <!-- Campo DNI -->
+      <label for="dni">DNI:</label>
+      <input type="text" id="dni" name="dni" required />
+
+      <!-- Campo Edad -->
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" name="edad" />
+
+      <br />
+      <!-- Campo Sexo -->
+      <label class="sexo">Sexo:</label>
+      <input type="radio" id="hombre" name="sexo" value="hombre" checked />
+      <label for="hombre" class="inline">Hombre</label>
+      <input type="radio" id="mujer" name="sexo" value="mujer" />
+      <label for="mujer" class="inline">Mujer</label>
+
+      <!-- Campo para cargar foto -->
+      <label for="foto">Incluir mi foto:</label>
+      <input type="file" id="foto" name="foto" accept="image/*" />
+
+      <!-- Checkbox para enviar publicidad -->
+      <label>
+        <input type="checkbox" id="publicidad" name="publicidad" checked />
+        Enviar publicidad
+      </label>
+
+      <!-- Lista desplegable de aficiones -->
+      <label for="aficiones">Elige tu afición favorita:</label>
+      <select id="aficiones" name="aficiones">
+        <option value="musica">Música</option>
+        <option value="lectura">Lectura</option>
+        <option value="deporte">Deporte</option>
+      </select>
+
+      <!-- Campo Observaciones -->
+      <label for="observaciones">Observaciones:</label>
+      <textarea
+        id="observaciones"
+        name="observaciones"
+        maxlength="150"
+      ></textarea>
+
+      <!-- Botones de acción -->
+      <button type="submit">Guardar cambios</button>
+      <button type="reset">Borrar los datos introducidos</button>
+    </form>
+
+    <script>
+      // Foco inicial en el campo nombre
+      document.getElementById("nombre").focus();
+
+      // Evento onchange para la lista de aficiones
+      document
+        .getElementById("aficiones")
+        .addEventListener("change", function () {
+          const lista = this;
+          const longitud = lista.options.length;
+          const indice = lista.selectedIndex;
+          const valor = lista.options[indice].value;
+          alert(
+            `La longitud de la lista es ${longitud}\nEl índice seleccionado es ${indice}\nEl valor del índice seleccionado es ${valor}`
+          );
+        });
+
+      // Validación del formulario al enviarlo
+      document
+        .getElementById("miFormulario")
+        .addEventListener("submit", function (event) {
+          const telefono = document.getElementById("telefono").value;
+          const dni = document.getElementById("dni").value;
+
+          if (!dni) {
+            alert("El campo DNI es obligatorio.");
+            event.preventDefault();
+          }
+
+          if (!/^\d{9}$/.test(telefono)) {
+            alert(
+              "El teléfono debe contener exactamente 9 dígitos consecutivos."
+            );
+            event.preventDefault();
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cambiar color de párrafo con Radio Buttons</title>
+    <style>
+      #miParrafo {
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+      }
+      .radio-group {
+        display: flex; /* Para alinear los radio buttons horizontalmente */
+        gap: 10px; /* Espacio entre los botones */
+      }
+      .radio-group label {
+        vertical-align: middle; /* Alinea verticalmente al centro */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="radio-group">
+      <input type="radio" id="rojo" name="color" value="rojo" />
+      <label for="rojo">Rojo</label>
+
+      <input type="radio" id="verde" name="color" value="verde" />
+      <label for="verde">Verde</label>
+
+      <input type="radio" id="azul" name="color" value="azul" />
+      <label for="azul">Azul</label>
+    </div>
+
+    <p id="miParrafo">
+      Este párrafo cambiará de color con la opción seleccionada.
+    </p>
+
+    <script>
+      const radioButtons = document.querySelectorAll('input[name="color"]');
+      const parrafo = document.getElementById("miParrafo");
+
+      radioButtons.forEach((radioButton) => {
+        radioButton.addEventListener("change", function () {
+          const colorSeleccionado = this.value;
+
+          switch (colorSeleccionado) {
+            case "rojo":
+              parrafo.style.color = "red";
+              break;
+            case "verde":
+              parrafo.style.color = "green";
+              break;
+            case "azul":
+              parrafo.style.color = "blue";
+              break;
+          }
+        });
+      });
+      // Para establecer un color por defecto al cargar la pagina
+      window.addEventListener("load", () => {
+        parrafo.style.color = "black";
+      });
+    </script>
+  </body>
+</html>
