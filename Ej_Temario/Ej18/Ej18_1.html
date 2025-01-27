@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario en Español</title>
+
+    <!-- Estilos personalizados del calendario -->
+    <link rel="stylesheet" type="text/css" href="css/calendar-estilo.css">
+    <style>
+        /* Estilos del calendario personalizados */
+        div.calendar {
+            position: relative;
+        }
+
+        .calendar,
+        .calendar table {
+            border: 1px solid #206A9B;
+            font-size: 11px;
+            color: #000;
+            cursor: default;
+            background: #F1F8FC;
+            font-family: Tahoma, Verdana, sans-serif;
+        }
+
+        .calendar thead .title {
+            font-weight: bold;
+            text-align: center;
+            background: #000;
+            color: #fff;
+            padding: 2px;
+        }
+
+        .calendar tbody .day {
+            width: 2em;
+            color: #456;
+            text-align: right;
+            padding: 2px 4px 2px 2px;
+        }
+
+        .calendar tbody td.today {
+            font-weight: bold;
+            color: #D50000;
+        }
+
+        /* Estilos adicionales para mejorar la usabilidad */
+        #fecha {
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #calendarioBtn {
+            padding: 5px 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            cursor: pointer;
+        }
+
+        #calendarioBtn:hover {
+            background-color: #e8e8e8;
+        }
+
+        #fechaFormateada {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <h2>Selecciona una fecha:</h2>
+    <input type="text" id="fecha" readonly>
+    <button id="calendarioBtn">📅</button>
+    <div id="fechaFormateada"></div> --><!-- Área para mostrar la fecha formateada -->
+    <!--<input type="hidden" id="fechaOculta"> --> <!-- Campo oculto para almacenar la fecha en formato corto -->
+
+    <h2>Selecciona una fecha:</h2>
+    <input type="hidden" id="fecha" name="fecha">
+    <span id="fechaMostrada"></span>
+    <button id="calendarioBtn">📅</button>
+
+
+    <!-- Scripts del calendario -->
+    <script type="text/javascript" src="js/calendar.js"></script>
+    <script type="text/javascript" src="js/calendar-es.js"></script>
+    <script type="text/javascript" src="js/calendar-setup.js"></script>
+
+    <script type="text/javascript">
+        // Configuración del calendario en español mejorada
+        Calendar.setup({
+            inputField: "fecha",         // ID del campo donde se almacenará la fecha
+            button: "calendarioBtn",      // ID del botón que abre el calendario
+            ifFormat: "%d/%m/%Y",         // Formato de fecha almacenado (para procesamiento)
+            daFormat: "%A, %d de %B de %Y", // Formato mostrado al usuario
+            displayArea: "fechaMostrada", // Mostrar la fecha formateada en un elemento <span>
+            firstDay: 1,                   // Lunes como primer día de la semana
+            weekNumbers: true,             // Ocultar el número de semana
+            singleClick: true,              // Selección con un solo clic
+            showsTime: false,                // No mostrar selector de hora
+            timeFormat: "24",                // Formato de hora en 24 horas
+            align: "Br",                     // Alineación inferior derecha
+            range: [1900, 2100],              // Rango de años seleccionables
+            showOthers: true                  // Mostrar días de otros meses
+        });
+    </script>
+
+
+</body>
+
+</html>

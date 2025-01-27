@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario en Español</title>
+
+    <!-- Estilos personalizados del calendario -->
+    <link rel="stylesheet" type="text/css" href="css/calendar-estilo.css">
+    <style>
+        /* Estilos del calendario personalizados */
+        div.calendar {
+            position: relative;
+        }
+
+        .calendar,
+        .calendar table {
+            border: 1px solid #206A9B;
+            font-size: 11px;
+            color: #000;
+            cursor: default;
+            background: #F1F8FC;
+            font-family: tahoma, verdana, sans-serif;
+        }
+
+        .calendar thead .title {
+            font-weight: bold;
+            text-align: center;
+            background: #000;
+            color: #fff;
+            padding: 2px;
+        }
+
+        .calendar tbody .day {
+            width: 2em;
+            color: #456;
+            text-align: right;
+            padding: 2px 4px 2px 2px;
+        }
+
+        .calendar tbody td.today {
+            font-weight: bold;
+            color: #D50000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Selecciona una fecha:</h2>
+    <input type="text" id="fecha" readonly="readonly">
+    <button id="calendarioBtn">📅</button>
+
+    <!-- Scripts del calendario -->
+    <script type="text/javascript" src="js/calendar.js"></script>
+    <script type="text/javascript" src="js/calendar-es.js"></script>
+    <script type="text/javascript" src="js/calendar-setup.js"></script>
+
+    <script type="text/javascript">
+        // Configuración del calendario en español
+        Calendar.setup({
+            inputField: "fecha",       // ID del campo donde se almacenará la fecha
+            button: "calendarioBtn",   // ID del botón que abre el calendario
+            ifFormat: "%d/%m/%Y",      // Formato de fecha almacenado en el campo de texto
+            daFormat: "%A, %d de %B de %Y", // Formato mostrado al usuario
+            firstDay: 1,               // Lunes como primer día de la semana
+            weekNumbers: true,         // Mostrar número de semana
+            singleClick: true,         // Selección de fecha con un solo clic
+            showsTime: false,          // No mostrar selector de hora
+            timeFormat: "24",          // Formato de hora en 24 horas
+            align: "Br",               // Alineación inferior derecha
+            range: [1900, 2100],        // Rango de años seleccionables
+            showOthers: true           // Mostrar días de otros meses
+        });
+    </script>
+
+</body>
+
+</html>

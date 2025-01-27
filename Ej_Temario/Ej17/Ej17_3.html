@@ -1,92 +1,108 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Limitador de Caracteres con Formulario</title>
-    <style>
-      body {
-        font-family: sans-serif;
+
+<head>
+  <title>Limitador de Caracteres con Formulario</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      /* Fuente del texto en la página */
+    }
+
+    #contenedor {
+      width: 500px;
+      /* Ancho del contenedor del formulario */
+      margin: 20px auto;
+      /* Centra el contenedor horizontalmente */
+    }
+
+    #contador {
+      text-align: right;
+      /* Alinea el contador a la derecha */
+      font-size: small;
+      /* Tamaño de fuente pequeño */
+      color: #777;
+      /* Color gris para el texto del contador */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="contenedor">
+    <form id="formulario" action="#">
+      <!-- Textarea para ingresar texto -->
+      <!-- Actualiza el contador al soltar una tecla -->
+      <textarea id="texto" onkeyup="actualizarContador()" onkeydown="return manejarTeclas(event);" rows="5"
+        cols="60"></textarea>
+      <!-- Contador de caracteres restantes -->
+      <div id="contador">100 caracteres restantes</div>
+      <br />
+      <!-- Botón para enviar el formulario -->
+      <input type="button" value="Enviar" onclick="enviarFormulario(this)" />
+    </form>
+  </div>
+
+  <script>
+    // Constantes y variables globales
+    const maximoCaracteres = 100; // Límite máximo de caracteres permitidos
+    const texto = document.getElementById("texto"); // Referencia al textarea
+    const contador = document.getElementById("contador"); // Referencia al contador
+    const formulario = document.getElementById("formulario"); // Referencia al formulario
+
+    // Función para actualizar el contador de caracteres restantes
+    function actualizarContador() {
+      let caracteresRestantes = maximoCaracteres - texto.value.length; // Calcula los caracteres restantes
+      contador.textContent = caracteresRestantes + " caracteres restantes"; // Actualiza el texto del contador
+
+      // *****NO FUNCIONA PORQUE manejarTeclas() se lo impide*****
+      // Cambia el color del contador a rojo si se supera el límite de caracteres
+      if (caracteresRestantes < 0) {
+        contador.style.color = "red";
+      } else {
+        contador.style.color = "#777"; // Restaura el color original si no se supera el límite
       }
+    }
 
-      #contenedor {
-        width: 500px;
-        margin: 20px auto;
+    // Función para manejar las teclas presionadas en el textarea
+    function manejarTeclas(event) {
+      let tecla = event.key; // Obtiene la tecla presionada
+      let caracteres = texto.value.length; // Obtiene la longitud actual del texto
+
+      // Si se supera el límite de caracteres y la tecla no es una de las permitidas, evita que se escriba
+      if (
+        caracteres >= maximoCaracteres &&
+        tecla != "Backspace" && // Permite borrar con Backspace
+        tecla != "Delete" && // Permite borrar con Delete
+        tecla != "ArrowLeft" && // Permite mover el cursor a la izquierda
+        tecla != "ArrowRight" && // Permite mover el cursor a la derecha
+        tecla != "Tab" && // Permite usar la tecla Tab
+        tecla != "a" // Permite la tecla "a" (esto parece un error, probablemente debería ser "Ctrl+A" para seleccionar todo)
+      ) {
+        event.preventDefault(); // Evita la acción predeterminada de la tecla
       }
+      actualizarContador(); // Actualiza el contador después de manejar la tecla
+    }
 
-      #contador {
-        text-align: right;
-        font-size: small;
-        color: #777;
+    // Función para enviar el formulario
+    function enviarFormulario(boton) {
+      boton.disabled = true; // Deshabilita el botón para evitar múltiples envíos
+      boton.value = setTimeout("Enviando", 50); // Cambia el texto del botón
+
+      // Validación adicional antes de enviar el formulario
+      if (texto.value.trim() === "") {
+        // Si el textarea está vacío, muestra una alerta
+        alert("Por favor, introduce un mensaje.");
+        boton.disabled = false; // Habilita el botón nuevamente
+        boton.value = "Enviar"; // Restaura el texto del botón
+        return false; // Evita el envío del formulario
       }
-    </style>
-  </head>
+      alert("Formulario enviado");
+      //formulario.submit(); // Envía el formulario si pasa la validación
+    }
 
-  <body>
-    <div id="contenedor">
-      <form id="formulario" action="#">
-        <textarea
-          id="texto"
-          onkeyup="actualizarContador()"
-          onkeydown="return manejarTeclas(event);"
-          rows="5"
-          cols="60"
-        ></textarea>
-        <div id="contador">100 caracteres restantes</div>
-        <br />
-        <input type="button" value="Enviar" onclick="enviarFormulario(this)" />
-      </form>
-    </div>
+    // Inicializa el contador al cargar la página
+    actualizarContador();
+  </script>
+</body>
 
-    <script>
-      const maximoCaracteres = 100;
-      const texto = document.getElementById("texto");
-      const contador = document.getElementById("contador");
-      const formulario = document.getElementById("formulario");
-
-      function actualizarContador() {
-        let caracteresRestantes = maximoCaracteres - texto.value.length;
-        contador.textContent = caracteresRestantes + " caracteres restantes";
-        if (caracteresRestantes < 0) {
-          contador.style.color = "red";
-        } else {
-          contador.style.color = "#777";
-        }
-      }
-
-      function manejarTeclas(event) {
-        let tecla = event.key;
-        let caracteres = texto.value.length;
-
-        if (
-          caracteres >= maximoCaracteres &&
-          tecla != "Backspace" &&
-          tecla != "Delete" &&
-          tecla != "ArrowLeft" &&
-          tecla != "ArrowRight" &&
-          tecla != "Tab" &&
-          tecla != "a"
-        ) {
-          event.preventDefault();
-        }
-        actualizarContador();
-      }
-
-      function enviarFormulario(boton) {
-        boton.disabled = true;
-        boton.value = "Enviando...";
-
-        //Aquí se podría añadir una validación extra antes de enviar el formulario.
-        if (texto.value.trim() === "") {
-          //Ejemplo: No permitir enviar si el textarea está vacío.
-          alert("Por favor, introduce un mensaje.");
-          boton.disabled = false;
-          boton.value = "Enviar";
-          return false; //Evita el envío del formulario.
-        }
-
-        formulario.submit();
-      }
-
-      actualizarContador();
-    </script>
-  </body>
 </html>
