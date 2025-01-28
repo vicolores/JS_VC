@@ -29,13 +29,6 @@
   <p id="distance"></p>
 
   <script>
-    // Generar las coordenadas del tesoro aleatoriamente
-    const treasure = {
-      x: Math.floor(Math.random() * 400),
-      y: Math.floor(Math.random() * 400)
-    };
-
-    let clicks = 0;
 
     // Calcular la distancia entre el clic y el tesoro
     function getDistance(event) {
@@ -58,6 +51,14 @@
         return "Muy frio";
       }
     }
+
+    // Generar las coordenadas del tesoro aleatoriamente
+    const treasure = {
+      x: Math.floor(Math.random() * 400),
+      y: Math.floor(Math.random() * 400)
+    };
+
+    let clicks = 0;
 
     // Manejar el clic en el mapa
     const map = document.getElementById("map");

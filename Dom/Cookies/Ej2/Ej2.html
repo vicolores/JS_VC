@@ -2,56 +2,96 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta nombre="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Cookies con Botones</title>
-    <script>
-        function setCookie(nombre, value) {
-            document.cookie = nombre + "=" + value + "; path=/";
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Cookies con Botones</title>
+  <script>
+    function setCookie(nombre, valor, diasExpiracion) {
+      let fecha = new Date();
+      fecha.setTime(fecha.getTime() + diasExpiracion * 24 * 60 * 60 * 1000);
+      let expiracion = "expires=" + fecha.toUTCString();
+      document.cookie = nombre + "=" + valor + ";" + expiracion + ";path=/";
+    }
 
-        function deleteCookie(nombre) {
-            document.cookie = nombre + '=; Max-Age=0; path=/';
-        }
+    function getCookie(nombre) {
+      let nombreCookie = nombre + "=";
+      let cookies = document.cookie.split(";");
 
-        function crearCookie1() {
-            let nombre = prompt("Introduce el nombre de la cookie:"); 
-            let valor = prompt("Introduce el valor de la cookie");
-            let finDia = prompt("Introduce el número de días para que expire la cookie, con este formato (Año, día, mes, hora, minutos");
-            let expireDay = new Date(finDia);
-            setCookie("nombre", "valor", "expireDay");
-            alert("Cookie 1 creada ");
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.indexOf(nombreCookie) === 0) {
+          return cookie.substring(nombreCookie.length, cookie.length);
         }
+      }
+      return "";
+    }
 
-        function crearCookie2() {
-            setCookie("cookie2", "valor2");
-            alert("Cookie 2 creada ");
-        }
+    function deleteCookie(nombre) {
+      document.cookie = nombre + "=; Max-Age=0; path=/";
+    }
 
-        function mostrarCookies() {
-            cookies = document.cookie;
-            alert(cookies ? "Cookies actuales: " + cookies : "No hay cookies creadas.");
-        }
+    function crearCookie() {
+      let nombre = prompt("Introduce el nombre de la cookie:");
 
-        function borrarCookie1() {
-            deleteCookie("cookie1");
-            alert("Cookie 1 eliminada ");
+      if (nombre) {
+        let valor = prompt("Introduce el valor de la cookie:");
+        if (valor) {
+          let dias = prompt("Introduce el número de días para que expire la cookie:");
+          if (dias) {
+            setCookie(nombre, valor, dias);
+            alert("Cookie creada satisfactoriamente.");
+          }
         }
+      }
+    }
 
-        function borrarCookie2() {
-            deleteCookie("cookie2");
-            alert("Cookie 2 eliminada ");
+    function modificarCookie() {
+      let nombre = prompt("Introduce el nombre de la cookie a modificar:");
+
+      if (nombre) {
+        let valor = prompt("Introduce el nuevo valor de la cookie:");
+        if (valor) {
+          let dias = prompt("Introduce el número de días para que expire la cookie:");
+          if (dias) {
+            setCookie(nombre, valor, dias);
+            alert("Cookie modificada satisfactoriamente.");
+          }
         }
-    </script>
+      }
+    }
+
+    function mostrarCookies() {
+      let cookies = document.cookie;
+
+      alert(cookies ? "Cookies actuales: " + cookies : "No hay cookies creadas.");
+    }
+
+    function leerCookie() {
+      let nombre = prompt("Introduce el nombre de la cookie para ver su valor:");
+      
+      if (nombre) {
+        let valor = getCookie(nombre);
+        alert(valor ? "El valor de la cookie '" + nombre + "' es: " + valor : "La cookie '" + nombre + "' no existe.");
+      }
+    }
+
+    function borrarCookie() {
+      let nombre = prompt("Introduce el nombre de la cookie a eliminar:");
+      if (nombre) {
+        deleteCookie(nombre);
+        alert("Cookie eliminada satisfactoriamente.");
+      }
+    }
+  </script>
 </head>
 
 <body>
-    <h1>Gestión de Cookies</h1>
-    <button onclick="crearCookie1()">Crear Cookie 1</button>
-    <button onclick="crearCookie2()">Crear Cookie 2</button>
-    <button onclick="mostrarCookies()">Mostrar Cookies</button>
-    <button onclick="borrarCookie1()">Borrar Cookie 1</button>
-    <button onclick="borrarCookie2()">Borrar Cookie 2</button>
+  <h1>Gestión de Cookies</h1>
+  <button onclick="crearCookie()">Crear Cookie</button>
+  <button onclick="modificarCookie()">Modificar Cookie</button>
+  <button onclick="mostrarCookies()">Mostrar Cookies</button>
+  <button onclick="leerCookie()">Leer Cookie</button>
+  <button onclick="borrarCookie()">Borrar Cookie</button>
 </body>
 
 </html>
