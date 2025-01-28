@@ -8,6 +8,7 @@
 		"editor.tokenColorCustomizations": {
 			"comments": "#6a737d",
 			"textMateRules": []
-		}
+		},
+		"editor.tabSize": 2
 	}
 }
