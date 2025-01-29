@@ -147,7 +147,9 @@
   <li></li>
 
   <script>
-
+    document.querySelectorAll('li:empty').forEach(li => {
+      li.style.backgroundColor = 'green'; // Pseudo-clase :empty
+    });
   </script>
 </body>
 

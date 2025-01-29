@@ -147,7 +147,16 @@
   <li></li>
 
   <script>
-
+    document.querySelectorAll('strong, b').forEach(elemento => {
+      elemento.style.color = 'red'; // Asume que "asientos en negrita" son estos elementos
+    });
+    /*
+      document.querySelectorAll('strong, b').forEach(element => {
+        if (element.textContent.includes('Asiento')) {
+          element.style.color = 'red';
+        }
+      });
+    */
   </script>
 </body>
 

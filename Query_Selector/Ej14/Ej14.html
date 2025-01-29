@@ -138,7 +138,8 @@
     <li>Asiento pa</li>
     <li><strong>Asiento pb</strong></li>
     <li>Asiento pc</li>
-    <li>Asiento pd</li>
+    <li>Asiento pdo</li>
+    
   </ul>
   <li></li>
   <li>Asiento pf</li>
@@ -147,7 +148,9 @@
   <li></li>
 
   <script>
-
+    //document.querySelector('#tabla li:last-of-type').style.fontWeight = 'bold';
+    const lis = document.querySelectorAll('#tabla li');
+    lis[lis.length - 1].style.fontWeight = 'bold';
   </script>
 </body>
 

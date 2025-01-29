@@ -147,7 +147,13 @@
   <li></li>
 
   <script>
+    document.querySelectorAll('p').forEach(element => {
 
+      if (element.textContent.includes('párrafo')) {
+
+        element.style.fontSize = '50px';
+      }
+    });
   </script>
 </body>
 
