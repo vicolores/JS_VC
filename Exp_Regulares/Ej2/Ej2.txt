@@ -1,0 +1,98 @@
+1. /^\d{3}-\d{2}-\d{4}$/
+    Al inicio de la cadena hay 3 digitos después un guión, luego 2 digitos, luego otro guión y finalmente 4 digitos.
+     ***Número de Seguro Social (SSN) en EE.UU***
+
+2. /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    Al inicio puede contener letras mayúsculas y minúsculas, números, puntos, guiones y caracteres especiales.
+    Luego debe haber un arroba, luego puede contener letras mayúsculas y minúsculas, números, puntos y guiones.
+    Luego debe haber un punto, luego puede contener letras mayúsculas y minúsculas 2 como mínimo
+    Final de la cadena
+    ***Valida direcciones de correo electrónico***
+
+3. /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/
+    Un dígito opcional que puede ser 0 o 1, seguido de cualquier dígito del 0 al 9
+    Obliga a que el primer dígito sea 2, seguido de 0-1-2-3.
+    Literal :
+    Del 0 al 5 como primer dígito y del 0-9 como segundo dígito.
+    ***Valida horas en formato 24h.***
+
+4. /^(http|https):\/\/[a-zA-Z0-9]+\.[a-zA-Z]{2,}/
+    1º http o https
+    2º Literal :
+    3º //
+    4º Cualquier letra(min o may) o número, 1 o más veces.
+    5º Cualquier carácter a-z (min-may) como mínimo 2 dígitos.
+    ***Valida URLs.***
+
+5. /^[^0-9]+$/
+    1º Cualquier texto menos números, una o más veces.
+    ***Cadenas sin dígitos.***
+
+6. /(\b\w+\b).*\1/
+    1º Límite de palabra
+    2º Una o más letras/números/guiones bajos
+    3º Límite de palabra
+    4º Cualquier cantidad de caracteres (incluyendo ninguno) 
+        antes de buscar nuevamente la misma palabra.
+    5º Referencia inversa al primer grupo capturado. 
+        Buscará exactamente la misma palabra que fue capturada anteriormente.
+    ***Detecta palabras repetidas en una cadena.***
+
+7. /^(\+|-)?\d+$/
+    1º + o - 0 o 1 vez.
+    2º Cualquier dígito 1 o más veces.
+    ***Valida números enteros con signo opcional.***
+
+8. /^[aeiou]([a-z]|[0-9])+$/i
+    0º No sensible mayúsculas-minúsculas.(/i)
+    1º Vocal
+    2º Letras o números 1 o más veces
+    ***Cadenas que empiezan con vocal y siguen con letras/números.***
+9. /^\d{1,3}(,\d{3})*(\.\d+)?$/
+    1º Entre 1 y 3 dígitos.
+    2º Literal ,
+    3º 3 dígitos 0 o más veces
+    4º . decimal 1 o más digitos (Opcional)
+    ***Valida números con separadores de miles y decimales.***
+
+10. /^\s*(.*?)\s*$/
+    1º Espacio en blanco 0 o más veces
+    2º Menor cantidad de caracteres
+    3º Espacio en blanco 0 o más veces
+    ***Captura el contenido de una cadena sin espacios al inicio/final.***
+
+11. /^([01]?[0-9]|2[0-3]):[0-5][0-9]\s(am|pm)$/i
+
+Propósito: Valida horas en formato 12h con AM/PM, pero con un error (permite horas como 23:59 PM).
+
+Ejemplo: 12:30 pm, 09:15 AM.
+
+Detalles:
+
+Hora ([01]?[0-9]|2[0-3]): 00-23 (incorrecto para 12h).
+
+AM/PM (i): Ignora mayúsculas/minúsculas.
+12. /^\d{1,2}\/\d{1,2}\/\d{4}$/
+
+Propósito: Valida fechas en formato DD/MM/AAAA o MM/DD/AAAA.
+
+Ejemplo: 31/12/2020, 05/05/1999.
+
+Detalles:
+
+\d{1,2}: Día y mes (1-2 dígitos).
+
+\d{4}: Año de 4 dígitos.
+
+
+Explicación:
+
+    ^ inicio de la cadena.
+    ([01]?[0-9]|2[0-3]) permite una hora entre 00 y 23 (formato 24h).
+    : requiere los dos puntos.
+    [0-5][0-9] permite minutos de 00 a 59.
+    $ fin de la cadena.
+
+Uso: Valida un formato de hora de 24 horas:
+
+Al inicio de la cadena hay una hora entre 00 y 23, luego un punto, luego minutos entr

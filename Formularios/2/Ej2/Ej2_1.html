@@ -15,37 +15,29 @@
       font-size: 0.9em;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      border: 1px solid gray;
+    .form-flex {
+      display: flex;
+      flex-wrap: wrap;
       max-width: 500px;
+      border: 1px solid black;
+      margin-top: 20px;
     }
 
-    .fondoTodos {
-      background-color: rgb(236, 236, 248);
-    }
-    .form-grid>div {
+    .form-flex>div {
+      flex: 1 1 50%;
       padding: 10px;
-      border-left: 1px solid black;
+      border: 1px solid black;
+      box-sizing: border-box;
     }
 
-    .radio-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .radio-option {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+    .form-flex .radio-group {
+      flex: 1 1 50%;
     }
   </style>
 </head>
 
 <body>
-  <form id="miFormulario">
+  <form id="miFormulario" onsubmit="return validarFormulario()">
     <label class="fondoTodos" for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" onfocus="limpiarError(this)" />
     <span id="errorNombre" class="mensaje-error"></span>
@@ -76,46 +68,55 @@
     <br />
     <br />
 
-    <div class="form-grid fondoTodos">
+    <!--  <label>Edad:</label>
+      <input type="radio" id="edad1" name="edad" value="0-20" />
+      <label for="edad1">0-20</label>
+      <input type="radio" id="edad2" name="edad" value="20-40" />
+      <label for="edad2">20-40</label>
+      <input type="radio" id="edad3" name="edad" value="40-60" />
+      <label for="edad3">40-60</label>
+      <input type="radio" id="edad4" name="edad" value="60-100" />
+      <label for="edad4">60-100</label>
+      <span id="errorEdad" class="mensaje-error"></span>
+      <br /><br /> -->
+
+    <div class="form-flex">
       <div>Edad:</div>
       <div>¿Cómo nos conociste?</div>
       <div class="radio-group">
         <div class="radio-option">
-          <input type="radio" name="edad" id="edad1" value="0-20" />
-          <label for="edad1">0-20</label>
+          <input type="radio" name="edad-flex" id="edad1-flex" />
+          <label for="edad1-flex">0-20</label>
         </div>
         <div class="radio-option">
-          <input type="radio" name="edad" id="edad2" value="20-40" />
-          <label for="edad2">20-40</label>
-        </div>
-        <div class="radio-option">
-          <input type="radio" name="edad" id="edad3" value="40-60" />
-          <label for="edad3">40-60</label>
-        </div>
-        <div class="radio-option">
-          <input type="radio" name="edad" id="edad4" value="60-80" />
-          <label for="edad4">60-80</label>
+          <input type="radio" name="edad-flex" id="edad2-flex" />
+          <label for="edad2-flex">20-40</label>
         </div>
       </div>
-      <div class="radio-group fondoTodos">
+      <div class="radio-group">
         <div class="radio-option">
-          <input type="checkbox" name="conocer" id="conocer1" value="amigo" />
-          <label for="conocer1">A través de un amigo.</label>
+          <input type="radio" name="conocer-flex" id="conocer1-flex" />
+          <label for="conocer1-flex">A través de un amigo.</label>
         </div>
         <div class="radio-option">
-          <input type="checkbox" name="conocer" id="conocer2" value="buscador" />
-          <label for="conocer2">A través de un buscador.</label>
-        </div>
-        <div class="radio-option">
-          <input type="checkbox" name="conocer" id="conocer3" value="navegando" />
-          <label for="conocer3">Navegando por la red.</label>
-        </div>
-        <div class="radio-option">
-          <input type="checkbox" name="conocer" id="conocer4" value="otros" />
-          <label for="conocer4">Otros.</label>
+          <input type="radio" name="conocer-flex" id="conocer2-flex" />
+          <label for="conocer2-flex">A través de un buscador.</label>
         </div>
       </div>
     </div>
+
+    <label>¿Cómo nos conociste?</label>
+    <input type="checkbox" id="amigo" name="conociste" value="amigo" />
+    <label for="amigo">A través de un amigo</label>
+    <input type="checkbox" id="buscador" name="conociste" value="buscador" />
+    <label for="buscador">A través de un buscador</label>
+    <input type="checkbox" id="navegando" name="conociste" value="navegando" />
+    <label for="navegando">Navegando por la red</label>
+    <input type="checkbox" id="otros" name="conociste" value="otros" />
+    <label for="otros">Otros</label>
+    <span id="errorConociste" class="mensaje-error"></span>
+    <br />
+    <br />
 
     <label for="opinion">Opinión sobre nuestra página web:</label>
     <br />
@@ -146,18 +147,6 @@
   </form>
 
   <script>
-    document.getElementById('miFormulario').addEventListener('submit', function(event) {
-      // Prevenir el envío del formulario por defecto
-      event.preventDefault();
-      
-      // Realizar la validación
-      if (validarFormulario()) {
-        // Si la validación es exitosa, aquí puedes procesar el formulario
-        console.log('Formulario válido - Procesando datos...');
-        // Aquí puedes agregar el código para enviar los datos
-      }
-    });
-
     function validarFormulario() {
       let valido = true;
 
@@ -201,30 +190,14 @@
       // Validar edad
       const edad = document.querySelector('input[name="edad"]:checked');
       if (!edad) {
-        const errorEdad = document.createElement('span');
-        errorEdad.className = 'mensaje-error';
-        errorEdad.textContent = "Debe seleccionar una opción de edad.";
-        const edadGroup = document.querySelector('.radio-group');
-        
-        // Eliminar error anterior si existe
-        const prevError = edadGroup.querySelector('.mensaje-error');
-        if (prevError) prevError.remove();
-        edadGroup.appendChild(errorEdad);
+        document.getElementById("errorEdad").textContent = "Debe seleccionar una opción de edad.";
         valido = false;
       }
 
       // Validar cómo nos conociste
-      const conocer = document.querySelectorAll('input[name="conocer"]:checked');
-      if (conocer.length === 0) {
-        const errorConocer = document.createElement('span');
-        errorConocer.className = 'mensaje-error';
-        errorConocer.textContent = "Debe seleccionar al menos una opción.";
-        const conocerGroup = document.querySelectorAll('.radio-group')[1];
-
-        // Eliminar error anterior si existe
-        const prevError = conocerGroup.querySelector('.mensaje-error');
-        if (prevError) prevError.remove();
-        conocerGroup.appendChild(errorConocer);
+      const conociste = document.querySelectorAll('input[name="conociste"]:checked');
+      if (conociste.length === 0) {
+        document.getElementById("errorConociste").textContent = "Debe seleccionar al menos una opción.";
         valido = false;
       }
 
@@ -247,18 +220,12 @@
 
     function mostrarError(campo, mensaje) {
       campo.classList.add("error");
-      const errorSpan = campo.nextElementSibling;
-      if (errorSpan && errorSpan.classList.contains('mensaje-error')) {
-        errorSpan.textContent = mensaje;
-      }
+      campo.nextElementSibling.textContent = mensaje;
     }
 
     function limpiarError(campo) {
       campo.classList.remove("error");
-      const errorSpan = campo.nextElementSibling;
-      if (errorSpan && errorSpan.classList.contains('mensaje-error')) {
-        errorSpan.textContent = "";
-      }
+      campo.nextElementSibling.textContent = "";
     }
   </script>
 </body>

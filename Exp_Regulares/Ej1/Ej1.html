@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Probador de Expresiones Regulares</title>
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin: 10px 0;
+    }
+
+    .resultado {
+      margin: 15px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .coincidencias {
+      color: #2c3e50;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Probador de Expresiones Regulares</h2>
+    <textarea id="texto" placeholder="Introduce tu texto aquí..."></textarea>
+    <button onclick="probarExpresiones()">Probar Expresiones</button>
+    <div id="resultados"></div>
+  </div>
+
+  <script>
+    const expresiones = [
+      {   // 1
+        desc: "Números de tres dígitos:",
+        regex: /\d{3}/g
+      },
+      {   // 2
+        desc: "Palabras que empiezan con 'g':",
+        regex: /\bg\w*\b/gi
+      },
+      {   // 3
+        desc: "Letras seguidas por número:",
+        regex: /[a-zA-Z]\d+/g
+      },
+      {   // 4
+        desc: "Espacios seguidos de palabra:",
+        regex: /\s\w+/g
+      },
+      {   // 5
+        desc: "Palabras que no terminan en 's':",
+        regex: /\b\w*[^s]\b/g
+      },
+      {   // 6
+        desc: "Líneas que empiezan con 'Inicio':",
+        regex: /^Inicio.*/gm
+      },
+      {   // 7
+        desc: "Líneas que terminan con 'Fin':",
+        regex: /.*Fin$/gm
+      },
+      {   // 8
+        desc: "Palabras con al menos una vocal:",
+        regex: /\b\w*[aeiouAEIOU]\w*\b/g
+      },
+      {   // 9
+        desc: "Números de teléfono (formato (123) 456-7890):",
+        regex: /\(\d{3}\) \d{3}-\d{4}/g
+      },
+      {   // 10
+        desc: "Palabras con al menos tres letras:",
+        regex: /\b\w{3,}\b/g
+      },
+      {   // 11
+        desc: "Palabras sin la letra 'e':",
+        regex: /\b(?!\w*e)\w+\b/g
+      },
+      {   // 12
+        desc: "Palabras que empiezan con 'a' o 'b':",
+        regex: /\b[ab]\w*\b/gi
+      },
+      {   // 13
+        desc: "Palabras que terminan con 'o' o 'a':",
+        regex: /\b\w+[oa]\b/g
+      },
+      {   // 14
+        desc: "Palabras con exactamente cinco letras:",
+        regex: /\b[a-zA-Z]{5}\b/g
+      },
+      {   // 15
+        desc: "Palabras que empiezan con 'c' y terminan con 'o':",
+        regex: /\bc\w*o\b/g
+      }
+    ];
+
+    function probarExpresiones() {
+      const texto = document.getElementById('texto').value;
+      const resultadosDiv = document.getElementById('resultados');
+      resultadosDiv.innerHTML = '';
+
+      expresiones.forEach((exp, index) => {
+        const matches = texto.match(exp.regex) || [];
+        const html = `
+                    <div class="resultado">
+                        <strong>${index + 1}. ${exp.desc}</strong>
+                        <div class="coincidencias">
+                            ${matches.length > 0 ?
+            matches.join(', ') :
+            'No se encontraron coincidencias'}
+                        </div>
+                    </div>
+                `;
+        resultadosDiv.innerHTML += html;
+      });
+    }
+  </script>
+</body>
+
+</html>
