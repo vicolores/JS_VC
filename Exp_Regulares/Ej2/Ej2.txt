@@ -63,36 +63,43 @@
 
 11. /^([01]?[0-9]|2[0-3]):[0-5][0-9]\s(am|pm)$/i
 
-Propósito: Valida horas en formato 12h con AM/PM, pero con un error (permite horas como 23:59 PM).
+    1º ^: Inicio de la cadena.
+    2º ([01]?[0-9]|2[0-3]):
+        [01]?[0-9]: Coincide con una hora de 00 a 19.
+            [01]?: Coincide con un 0 o 1 opcionalmente (para horas de 0 a 1).
+            [0-9]: Coincide con cualquier dígito de 0 a 9.
+        |: Operador OR.
+        2[0-3]: Coincide con una hora de 20 a 23.
+            2: Coincide con el dígito 2.
+            [0-3]: Coincide con cualquier dígito de 0 a 3.
+    3º :: Coincide con el carácter ":" literalmente.
+    4º [0-5][0-9]: Coincide con los minutos de 00 a 59.
+        [0-5]: Coincide con cualquier dígito de 0 a 5.
+        [0-9]: Coincide con cualquier dígito de 0 a 9.
+    5º \s: Coincide con un espacio en blanco.
+    6º (am|pm): Coincide con "am" o "pm".
+        am: Coincide con la cadena "am".
+        |: Operador OR.
+        pm: Coincide con la cadena "pm".
+    7º $: Fin de la cadena.
+    8º i: Modificador que hace que la coincidencia sea insensible a mayúsculas y minúsculas.
 
-Ejemplo: 12:30 pm, 09:15 AM.
+    ***Captura una hora en formato de 12 horas con "am" o "pm".***
 
-Detalles:
 
-Hora ([01]?[0-9]|2[0-3]): 00-23 (incorrecto para 12h).
-
-AM/PM (i): Ignora mayúsculas/minúsculas.
 12. /^\d{1,2}\/\d{1,2}\/\d{4}$/
 
-Propósito: Valida fechas en formato DD/MM/AAAA o MM/DD/AAAA.
+    1º \d{1,2}: Coincide con uno o dos dígitos (para el día).
+            \d: Coincide con cualquier dígito.
+            {1,2}: Coincide con uno o dos dígitos.
+    2º \/: Coincide con el carácter "/" literalmente.
+    3º \d{1,2}: Coincide con uno o dos dígitos (para el mes).
+            \d: Coincide con cualquier dígito.
+            {1,2}: Coincide con uno o dos dígitos.
+    4º \/: Coincide con el carácter "/" literalmente.
+    5º \d{4}: Coincide con exactamente cuatro dígitos (para el año).
+            \d: Coincide con cualquier dígito.
+            {4}: Coincide con exactamente cuatro dígitos.
+    6º $: Fin de la cadena.
 
-Ejemplo: 31/12/2020, 05/05/1999.
-
-Detalles:
-
-\d{1,2}: Día y mes (1-2 dígitos).
-
-\d{4}: Año de 4 dígitos.
-
-
-Explicación:
-
-    ^ inicio de la cadena.
-    ([01]?[0-9]|2[0-3]) permite una hora entre 00 y 23 (formato 24h).
-    : requiere los dos puntos.
-    [0-5][0-9] permite minutos de 00 a 59.
-    $ fin de la cadena.
-
-Uso: Valida un formato de hora de 24 horas:
-
-Al inicio de la cadena hay una hora entre 00 y 23, luego un punto, luego minutos entr
+    ***Captura una fecha en formato DD/MM/YYYY.***
